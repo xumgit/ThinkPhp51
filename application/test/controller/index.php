@@ -14,6 +14,8 @@ class Index extends Controller
     	$test = new \myExtend\Test();
     	dump($test->sayHello(), true, "test->Index");
     	dump($test->sayGood());
+        dump($this->request->param("name", "default name=>request"));
+        dump(input("name", "default name=>input"));
     	$html = "app path: ".Env::get("APP_PATH")."<br />".
     			"root app: ".Env::get("ROOT_PATH")."<br />".
     			"think app: ".Env::get("THINK_PATH")."<br />".
@@ -26,7 +28,7 @@ class Index extends Controller
         return $html;
     }
 
-    public function serverinfo() {
+    public function serverInfo() {
         $html = "url(): ".Request::url()."<br />".
                 "url(true): ".Request::url(true)."<br />".
                 "baseFile(): ".Request::baseFile()."<br />".
@@ -35,6 +37,13 @@ class Index extends Controller
                 "root(true): ".Request::root(true)."<br />";
         return $html;
     } 
+
+    public function headerInfo() {
+        $info = Request::header();
+        dump("accept:".$info["accept"]);
+        dump("accept-encoding:".$info["accept-encoding"]);
+        dump("user-agent:".$info["user-agent"]);
+    }
 
     public function gotoSuccess()
     {

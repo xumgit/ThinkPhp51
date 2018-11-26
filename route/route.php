@@ -15,6 +15,13 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+Route::get('serverInfo/:id','test/index/serverInfo')
+      ->https(false)
+      ->domain("localhost")
+      ->ext()
+      ->after(["\app\\test\behavior\TestInfo"])
+      ->response(["\app\\test\behavior\ConvertJson"]);
+
 return [
 
 ];
