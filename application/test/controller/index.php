@@ -54,5 +54,5 @@ class Index extends Controller
     public function gotoError(){
         $this->error('error');
     }
->>>>>>> b69ad799591e675414be86d740f4f66d87051a21
+    
 }
