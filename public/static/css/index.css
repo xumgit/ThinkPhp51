@@ -1,0 +1,7 @@
+
+div {text-align: center; font-size: 30px; color: #f00;}
+
+div#mainCaptcha {text-align:center;}
+/* div#mainCaptcha div table {margin:0 auto;} */
+div#mainCaptcha table td {text-align: center;}
+div#mainCaptcha div#msg {color: #f00;}

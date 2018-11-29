@@ -6,3 +6,6 @@
 #thinkphp
 .env
 .DS_Store
+.buildpath
+.project
+.settings/

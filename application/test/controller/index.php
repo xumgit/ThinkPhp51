@@ -29,6 +29,22 @@ class Index extends Controller
         return $html;
     }
 
+    public function responseType() {
+        $data = ["key1"=>"value1", "key2"=>"value2", "key3"=>"value3"];
+        $json_data = json($data);
+        dump(json()->data($data)->code(201));
+        dump($json_data);
+        dump($json_data->getContent());
+        //rerturn redirect("http://www.baidu.com");
+        return $json_data;
+    }
+
+    public function downloadTest() {
+        $path = Request::root()."/static/images/test.jpg";
+        $download = new \think\response\Download($path);
+        return $download->name("1.jpg");
+    }
+
     public function serverInfo() {
         $html = "url(): ".Request::url()."<br />".
                 "url(true): ".Request::url(true)."<br />".
