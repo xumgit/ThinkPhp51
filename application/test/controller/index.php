@@ -5,7 +5,7 @@ use think\Controller;
 use think\facade\Env;
 use think\facade\Request;
 
-#use app\test\model\NbaTeam;
+use app\test\model\NbaTeam;
 
 class Index extends Controller
 {
@@ -27,6 +27,14 @@ class Index extends Controller
     			"route path: ".Env::get("ROUTE_PATH")."<br />".
     			"module path: ".Env::get("MODULE_PATH")."<br />";
         return $html;
+    }
+
+    public function databaseTest() {
+        $nbaTeam = new Nbateam();
+        $data = $nbaTeam->_get_team_info();
+        //foreach($data as $key=>$value) {
+            dump($data);
+        //}
     }
 
     public function responseType() {

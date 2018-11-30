@@ -14,7 +14,7 @@ class NbaTeam extends Model
 				   DB_NBATEAM_WIN      => [['gt',50],['lt',60],'and']
 		         ];
 		$order = [DB_NBATEAM_RANK => 'asc'];
-		$field = [DB_NBATEAM_NAME,DB_NBATEAM_WIN,DB_NBATEAM_LOSE,DB_NBATEAM_PARTITION];
+		$field = [DB_NBATEAM_WIN,DB_NBATEAM_LOSE];
 		$data = $this->where($where)->order($order)->field($field)->limit(8)->select();
 		return $data;
 	}
@@ -29,10 +29,11 @@ class NbaTeam extends Model
 	public function _get_team_info()
 	{
 		$field = [DB_NBATEAM_NAME,DB_NBATEAM_WIN,DB_NBATEAM_LOSE,DB_NBATEAM_PARTITION];
-		$where[DB_NBATEAM_WIN] = ['elt',20];
-		$where[DB_NBATEAM_LOSE] = ['egt',20];
+		//$where[] = [DB_NBATEAM_WIN, '>', 50];
+		//$where[] = [DB_NBATEAM_LOSE, '<', 20];
+		$where = [[DB_NBATEAM_WIN,'>', 50], [DB_NBATEAM_WIN, '<', 30]];
 		$order = [DB_NBATEAM_WIN => 'asc', DB_NBATEAM_ID => 'desc'];
-		$data = $this->limit(5)->field($field)->where($where)->order($order)->select();
+		$data = $this->limit(5)->field($field)->whereOr($where)->order($order)->select();
 		//$data = $this->max(DB_NBATEAM_WIN);
 		//$data = $this->count();
 		return $data;
