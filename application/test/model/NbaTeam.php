@@ -46,4 +46,31 @@ class NbaTeam extends Model
 		$data = $this->where($where)->order($order)->paginate($list_rows);
 		return $data;
 	}
+
+	// get Rank field value
+	public function getRankAttr($value)
+	{
+		$Rank = [1=>'first rank', 2=>'second rank', 3=>'third rank', 4=>'four rank'];
+		return $Rank[$value];
+	}
+
+	public function searchAllianceAttr($query, $value, $data)
+	{
+		//dump($value);
+		$query->where(DB_NBATEAM_ALLIANCE, 'like', $value . '%');
+		if (isset($data['sort'])) {
+			$query->order($data['sort']);
+		}
+	}
+	
+	public function searchWinAttr($query, $value, $data)
+	{
+		//dump($value[0] . "-" . $value[1]);
+		$query->whereBetween(DB_NBATEAM_WIN, $value[0].",".$value[1]);
+	}
+
+	public function scopeWin($query, $win)
+	{
+		$query->where(DB_NBATEAM_WIN, '>', $win);
+	}
 }

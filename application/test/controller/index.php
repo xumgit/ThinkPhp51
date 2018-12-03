@@ -30,11 +30,32 @@ class Index extends Controller
     }
 
     public function databaseTest() {
-        $nbaTeam = new Nbateam();
-        $data = $nbaTeam->_get_team_info();
-        //foreach($data as $key=>$value) {
-            dump($data);
+        //$nbaTeam = new Nbateam();
+        //$data = $nbaTeam->_get_team_info();        
+        //dump($data);
+        
+        //$data_1 = Nbateam::where(DB_NBATEAM_WIN, ">", 60)->column(DB_NBATEAM_NAME, DB_NBATEAM_ID);
+        //foreach($data_1 as $key=>$value) {
+            //dump($key."=>".$value);
         //}
+        //dump($data_1);
+
+        //$idKey = "1f9622d54781f79da17bbd9ab829bbf0";
+        //$nbateamGet = Nbateam::get($idKey);
+        //dump($nbateamGet);
+        //dump("name:".$nbateamGet->Rank);
+        //dump($nbateamGet->getData());
+
+        $data_2 = Nbateam::withSearch([DB_NBATEAM_WIN, DB_NBATEAM_ALLIANCE], [
+                        DB_NBATEAM_WIN => [50,60],
+                        DB_NBATEAM_ALLIANCE => 'West',
+                        'sort' => [DB_NBATEAM_WIN => 'desc']])->select(); 
+        dump(Nbateam::getLastSql());
+        dump($data_2->toJson());
+        dump($data_2->toArray());
+
+        //$data_3 = Nbateam::Win(60)->select();
+        //dump($data_3);
     }
 
     public function responseType() {
