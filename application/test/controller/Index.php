@@ -28,7 +28,15 @@ class Index extends Controller
     			"module path: ".Env::get("MODULE_PATH")."<br />";
         return $html;
     }
-
+    
+    public function test() {
+        $nbaTeam = new Nbateam();
+        $data = $nbaTeam->_get_team_info();
+        $this->assign("data", $data);
+        $view = "index/test";
+        return $this->fetch($view);
+    }
+    
     public function databaseTest() {
         //$nbaTeam = new Nbateam();
         //$data = $nbaTeam->_get_team_info();        
