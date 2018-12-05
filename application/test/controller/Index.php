@@ -31,9 +31,14 @@ class Index extends Controller
     
     public function test() {
         $nbaTeam = new Nbateam();
-        $data = $nbaTeam->_get_team_info();
-        $this->assign("data", $data);
+        $teamInfo = $nbaTeam->_get_team_info();
+        $this->assign("teamInfo", $teamInfo);
+        $arr = ["a"=>"aa","b"=>"bb","c"=>"cc"];
+        $this->assign("arr", $arr);
+        $this->assign("nameTest", "yii");
+        $this->assign("idTest", 3);
         $view = "index/test";
+        $this->view->engine->layout('layout/mainlayout');
         return $this->fetch($view);
     }
     

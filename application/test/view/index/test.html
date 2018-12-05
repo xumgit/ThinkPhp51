@@ -11,5 +11,58 @@
 	<div>{$Think.const.PHP_VERSION}</div>
 	<div>{$Think.config.default_module}</div>
 	<div>{$Think.config.default_controller}</div>
+	{volist name="teamInfo" id="team" key="k"}
+		<div style="color: blue;">{$k}:{$key}:{$team[DB_NBATEAM_NAME]}</div>
+	{/volist}
+	{foreach $arr as $key=>$val}
+		<div>{$key}:{$val}</div>
+	{/foreach}
+	<select id="select">
+		{for start="1" end="5"}
+			<option value="{$i}">{$i}</option>
+		{/for}
+	</select>
+	{eq name="nameTest" value="think"}
+		<div style="color: blue;">equal</div>
+	{else/}
+		<div style="color: blue;">not equal</div>
+	{/eq}
+	{switch name="nameTest"}
+		{case value="think"}<div>thinkphp</div>{/case}
+		{case value="yii"}<div>yii</div>{/case}
+		{default /}no
+	{/switch}
+	{if $nameTest == "think"}
+		<div style="color: blue;">thinkphp</div>
+	{elseif $nameTest == "yii"}
+		<div style="color: blue;">yii</div>
+	{else/}
+		<div style="color: blue;">no</div>
+	{/if}
+	{in name="nameTest" value="think,yii"}
+		<div>in</div>
+	{else/}
+		<div">no in</div>
+	{/in}
+	{between name="idTest" value="1,10"}
+		<div style="color: blue;">between</div>
+	{else/}
+		<div style="color: blue;">no between</div>
+	{/between}
+	{present name="nameTestAbc"}
+		<div>present</div>
+	{else /}
+		<div>no present</div>
+	{/present}
+	{empty name="nameTest"}
+		<div style="color: blue;">empty</div>
+	{else /}
+		<div style="color: blue;">no empty</div>
+	{/empty}
+	{defined name="nameTestBcd"}
+		<div>define</div>
+	{else /}
+		<div>no define</div>
+	{/defined}
 </body>
 </html>
