@@ -35,7 +35,8 @@ return [
 
     //'layout_on'     =>  true,
     //'layout_name'   =>  'layout/mainlayout',
-
-    //'__STATIC__' => '/static',
-    //'__JS__' => '/static/javascript',
+    // thinkphp51/public/static
+    'tpl_replace_string'  =>  [
+        '__STATIC__'=> str_replace('/index.php' ,'' ,$_SERVER['SCRIPT_NAME']) . '/static',
+    ],
 ];

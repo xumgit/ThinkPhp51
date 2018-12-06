@@ -6,6 +6,7 @@ use think\facade\Env;
 use think\facade\Request;
 
 use app\test\model\NbaTeam;
+use app\test\validate\ValidateTest;
 
 class Index extends Controller
 {
@@ -30,6 +31,7 @@ class Index extends Controller
     }
     
     public function test() {
+        debug('begin');
         $nbaTeam = new Nbateam();
         $teamInfo = $nbaTeam->_get_team_info();
         $this->assign("teamInfo", $teamInfo);
@@ -39,9 +41,64 @@ class Index extends Controller
         $this->assign("idTest", 3);
         $view = "index/test";
         $this->view->engine->layout('layout/mainlayout');
+        debug('end');
+        $timeConsume = debug('begin','end').'s';
+        $flowConsume = debug('begin','end', 'm');
+        $this->assign("timeConsume", $timeConsume);
+        $this->assign("flowConsume", $flowConsume);
         return $this->fetch($view);
     }
     
+    public function validateTest() {
+        $data = [
+            'name' => 'thinkphp',
+            'email' => 'thinkphp@qq.com',
+            'age' => 10
+        ];
+        $validate = new ValidateTest();
+
+        $result_1 = $validate->check($data);
+        $result_2 = $this->validate($data, 'app\test\validate\ValidateTest');
+        if(!$result_1) {
+            dump($validate->getError());
+        }
+        $result_3 = $validate->scene('edit')->check($data);
+        if (!$result_3) {
+            dump($validate->getError());
+        }
+
+        dump($result_1." | ".$result_2." | ".$result_3);
+    }
+
+    public function cacheTest() {
+        $value = ["a"=>"aa","b"=>"bb","c"=>"cc"];                            
+        cache('name1', 'thinkphp', 3600);
+        $cacheValue = cache('name1');
+        dump("cache=".$cacheValue);
+        cache('name1', NULL);
+
+        session('name2', 'thinkphp');
+        $sessionValue = session('name2');
+        if ($sessionValue != null) {
+           dump("session=".$sessionValue); 
+        } else {
+           dump("session="."sessionValue is null");
+        }
+        session('name2', null);
+
+        cookie('name3', 'thinkphp', 3600);
+        $cookieValue = cookie('name3');
+        if ($cookieValue != null) {
+            dump("cookie=".$cookieValue);
+        } else {
+            dump("cookie="."cookieValueis null");
+        }
+        cookie('name3', null);
+
+        $varLang = lang('hello thinkphp');
+        dump("lang=".$varLang);
+    }
+
     public function databaseTest() {
         //$nbaTeam = new Nbateam();
         //$data = $nbaTeam->_get_team_info();        

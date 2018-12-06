@@ -3,14 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Test page</title>
+{load href="__STATIC__/js/jquery-1.11.3.js" /}
+{load href="__STATIC__/css/index.css" /}
 <style type="text/css">
 	div {color:red;}
 </style>
 </head>
 <body>
+	<div>{$timeConsume}</div>
+	<div>{$flowConsume}</div>
 	<div>{$Think.const.PHP_VERSION}</div>
 	<div>{$Think.config.default_module}</div>
 	<div>{$Think.config.default_controller}</div>
+	<div>{$Think.version}</div>
 	{volist name="teamInfo" id="team" key="k"}
 		<div style="color: blue;">{$k}:{$key}:{$team[DB_NBATEAM_NAME]}</div>
 	{/volist}
