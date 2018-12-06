@@ -99,6 +99,21 @@ class Index extends Controller
         dump("lang=".$varLang);
     }
 
+    public function paginate() {
+        $currentPage = Request::instance()->param('page');
+        if(empty($currentPage)){
+            $currentPage = 1;
+        }
+        $nbaTeam = new Nbateam();
+        $list_rows = 7; // 每页显示多少
+        $list = $nbaTeam->_get_team_by_paginate($list_rows);
+        $this->assign('list', $list);
+        $this->assign('currentPage', $currentPage);
+        $this->assign('list_rows', $list_rows);
+        $view = "index/paginate";
+        return $this->fetch();
+    }
+
     public function databaseTest() {
         //$nbaTeam = new Nbateam();
         //$data = $nbaTeam->_get_team_info();        

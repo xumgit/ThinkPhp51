@@ -37,6 +37,7 @@ return [
     //'layout_name'   =>  'layout/mainlayout',
     // thinkphp51/public/static
     'tpl_replace_string'  =>  [
-        '__STATIC__'=> str_replace('/index.php' ,'' ,$_SERVER['SCRIPT_NAME']) . '/static',
+        '__STATIC__' => str_replace('/index.php' ,'' ,$_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR.'static',
+        '__IMAGE__' => DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'nbateam'.DIRECTORY_SEPARATOR,
     ],
 ];

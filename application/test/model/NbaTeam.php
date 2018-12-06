@@ -41,7 +41,7 @@ class NbaTeam extends Model
 	
 	public function _get_team_by_paginate($list_rows)
 	{
-		$where = [DB_NBATEAM_WIN，'egt', 40];
+		$where = [[DB_NBATEAM_WIN, '>', 40]];
 		$order = [DB_NBATEAM_WIN => 'desc'];
 		$data = $this->where($where)->order($order)->paginate($list_rows);
 		return $data;

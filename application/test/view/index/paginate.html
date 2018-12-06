@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test page</title>
+{load href="__STATIC__/css/paginate.css" /}
+</head>
+<body>
+ <div id="test">
+   <table>
+     <tr>
+        <th>序列</th>
+        <th>球队名字</th>
+        <th>球队队徽</th>
+        <th>球队区域</th>
+        <th>球队分属</th>
+     </tr>
+      {volist name='list' id='team'}
+      <tr>
+        <td>{$key+1+($currentPage-1)*$list_rows}</td>
+        <td>{$team[DB_NBATEAM_NAME]}</td>
+        <td><img src="__STATIC____IMAGE__{$team[DB_NBATEAM_LOGO]}" style="width: 40px; height: 40px;"/></td>
+        <td>{$team[DB_NBATEAM_ALLIANCE]}</td>
+        <td>{$team[DB_NBATEAM_PARTITION]}</td>
+      </tr>
+      {/volist}
+   </table>
+   {$list|raw}
+ </div>
+</body>
+</html>

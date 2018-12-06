@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>uploadFile</title>
+</head>
+<body>
+  <div style="text-align:center; font-size: 20px;">
+    <form action="{url('index/index/upload',['type'=>'success'])}" enctype="multipart/form-data" method="post">
+      <input type="file" name="fileName[]" /><br>	
+      <input type="file" name="fileName[]" /><br>	
+      <input type="submit"	value="上传" />	
+    </form>	
+    <div id="uploadFileName" style="color: #00f">
+      {neq name="uploadFileName" value=""}
+       fileName:     
+      {/neq} 
+       {$uploadFileName}
+    </div>
+    <div id="message" style="color: #f00">{$message}</div>
+  </div>
+</body>
+</html>
