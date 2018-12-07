@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <title>Test page</title>
 {load href="__STATIC__/js/jquery-1.11.3.js" /}
-{load href="__STATIC__/css/index.css" /}
+<!--{load href="__STATIC__/css/index.css" /} -->
 <style type="text/css">
 	div {color:red;}
 </style>
 </head>
 <body>
+	<a href="{:url('test/index/hello', ['id' => 5, 'name' => 'test'])}">goTo</a> <br />
 	<div>{$timeConsume}</div>
 	<div>{$flowConsume}</div>
 	<div>{$Think.const.PHP_VERSION}</div>

@@ -11,6 +11,9 @@
 
 // 应用公共文件
 // 
+define("__UPLOAD__", "uploads");
+define("__UPLOAD_PATH__", Env::get("ROOT_PATH")."public".DIRECTORY_SEPARATOR.__UPLOAD__.DIRECTORY_SEPARATOR); 
+
 /* ----- define table ----- */
 /*    
  * nbateam table

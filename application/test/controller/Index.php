@@ -12,7 +12,7 @@ class Index extends Controller
 {
     public function hello($name = 'ThinkPHP5')
     {
-        echo request()->param('name');
+        dump(request()->param('name'));
     	$test = new \myExtend\Test();
     	dump($test->sayHello(), true, "test->Index");
     	dump($test->sayGood());
@@ -112,6 +112,36 @@ class Index extends Controller
         $this->assign('list_rows', $list_rows);
         $view = "index/paginate";
         return $this->fetch();
+    }
+
+    public function upload()
+    {   
+        $message = "";
+        $uploadFileName = ""; 
+
+        if (Request::instance()->isPost()) {
+            $files = request()->file("fileName");
+            foreach($files as $file){
+                $info = $file->move(__UPLOAD_PATH__, "");
+                $uploadFileName = $uploadFileName."|".$info->getFilename();
+                if($info) {
+                    //echo $info->getExtension()."<br />";
+                    //echo $info->getSaveName()."<br />";
+                    //echo $info->getFilename()."<br />";                                   
+                    $message = "upload success";
+                } else {
+                    //echo $file->getError();
+                    $message = "upload error, please check it";
+                }
+            }
+        } else {
+            
+        }
+
+        $this->assign("message", $message);
+        $this->assign("uploadFileName", $uploadFileName);
+        $view = "index/upload";
+        return $this->fetch($view);
     }
 
     public function databaseTest() {

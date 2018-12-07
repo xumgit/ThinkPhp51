@@ -6,9 +6,9 @@
 </head>
 <body>
   <div style="text-align:center; font-size: 20px;">
-    <form action="{url('index/index/upload',['type'=>'success'])}" enctype="multipart/form-data" method="post">
-      <input type="file" name="fileName[]" /><br>	
-      <input type="file" name="fileName[]" /><br>	
+    <form action="{:url('test/index/upload',['type'=>'success'])}" enctype="multipart/form-data" method="post">
+      <input type="file" name="fileName[]" /><br />	
+      <input type="file" name="fileName[]" /><br />	
       <input type="submit"	value="上传" />	
     </form>	
     <div id="uploadFileName" style="color: #00f">
